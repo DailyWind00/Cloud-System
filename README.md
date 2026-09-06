@@ -1,10 +1,5 @@
-# Game Engine setup
+# Cloud System
 
-Normalize the code (mainly classes) of previous graphic projects for interaction as modules.
-#
-### Previous graphics projects :
-  - [Scop](https://github.com/DailyWind00/scop)
-  - [Particle-System](https://github.com/DailyWind00/Particle-System)
-  - [ft_vox](https://github.com/DailyWind00/ft_vox)
+Test of a 3D cloud system, using realistic cloud types as reference.
 
-> Check [project](https://github.com/users/DailyWind00/projects/3) for next updates / contribute
+> This project is based on my [GameEngine](https://github.com/DailyWind00/GameEngine) as a foundation.
