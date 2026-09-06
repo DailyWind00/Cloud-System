@@ -3,7 +3,7 @@
 // System includes
 # include <type_traits>
 
-namespace GE::Core {
+namespace GE {
 	/**
 	 * @brief The Singleton class template provides a way to create a singleton instance of a class.
 	 * 

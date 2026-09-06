@@ -6,7 +6,7 @@
 /// Dependencies
 # include <glm/glm.hpp>
 
-namespace GE::Utils {
+namespace GE {
 	/**
 	 * @brief A simple noise generator for 2D and 3D space.
 	 * 

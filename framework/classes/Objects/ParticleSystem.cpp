@@ -1,13 +1,13 @@
 #include "ParticleSystem.hpp"
 
-namespace GE::Objects {
+namespace GE {
 
 	# pragma region Constructors & Destructors
 
 	// Create a particle system with a given name, a number of particles and a list of OpenCL kernel programs
 	// The kernel programs are loaded from the files in VkernelProgramPaths
 	// The kernel program will begin from the "update" function
-	ParticleSystem::ParticleSystem(size_t ParticleCount, const std::vector<std::string> &VkernelProgramPaths, Core::Logger* logger) : logger(logger) {
+	ParticleSystem::ParticleSystem(size_t ParticleCount, const std::vector<std::string> &VkernelProgramPaths, Logger* logger) : logger(logger) {
 		if (logger) logger->info("Creating particle system with " + std::to_string(ParticleCount) + " particles");
 
 		size_t bufferSize = ParticleCount * sizeof(Particle);

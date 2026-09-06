@@ -12,7 +12,7 @@
 # include <glfw/glfw3.h>
 # include "stb_image/stb_image.h"
 
-namespace GE::Objects {
+namespace GE {
 	/**
 	 * @brief Class to create a skybox as a cube with a cubemap texture.
 	 * 
@@ -29,7 +29,7 @@ namespace GE::Objects {
 	 */
 	class	SkyBox {
 		public:
-			SkyBox(const std::vector<std::string> &path = {}, Core::Logger *logger = nullptr);
+			SkyBox(const std::vector<std::string> &path = {}, Logger *logger = nullptr);
 			~SkyBox();
 
 			/// Public functions
@@ -40,7 +40,7 @@ namespace GE::Objects {
 			GLuint	VAO;
 			GLuint	VBO;
 			GLuint	textureID = 0;
-			Core::Logger	*logger = nullptr;
+			Logger	*logger = nullptr;
 	};
 }
 

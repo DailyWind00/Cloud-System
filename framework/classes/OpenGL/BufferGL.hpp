@@ -7,7 +7,7 @@
 /// Dependencies
 # include <glad/glad.h>
 
-namespace GE::OpenGL {
+namespace GE {
 	/// @brief This class is a simple wrapper around OpenGL buffers.
 	///
 	/// It allows to create, bind, unbind, update and delete buffers.

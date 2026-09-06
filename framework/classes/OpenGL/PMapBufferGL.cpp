@@ -1,6 +1,6 @@
 #include "PMapBufferGL.hpp"
 
-namespace GE::OpenGL {
+namespace GE {
 
 	# pragma region Constructors & Destructors
 

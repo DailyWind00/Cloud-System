@@ -1,7 +1,7 @@
 
 #include "NoiseGenerator.hpp"
 
-namespace GE::Utils {
+namespace GE {
 
 	# pragma region Public methods
 

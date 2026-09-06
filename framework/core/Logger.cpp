@@ -3,7 +3,7 @@
 #include <iostream>
 #include <iomanip>
 
-namespace GE::Core {
+namespace GE {
 
 	#pragma region Public Methods
 

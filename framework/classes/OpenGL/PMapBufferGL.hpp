@@ -10,7 +10,7 @@
 /// Dependencies
 # include <glad/glad.h>
 
-namespace GE::OpenGL {
+namespace GE {
 	/// @brief This class is a simple wrapper around OpenGL persistent mapped buffers.
 	///
 	/// It allows to create, bind, unbind, resize, write and flush buffers.

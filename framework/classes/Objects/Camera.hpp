@@ -10,7 +10,7 @@
 # include "glm/glm.hpp"
 # include <glm/gtc/matrix_transform.hpp>
 
-namespace GE::Objects {
+namespace GE {
 
 	/// @brief Stores the camera information (view matrix)
 	struct CameraInfo {
@@ -44,7 +44,7 @@ namespace GE::Objects {
 				ORTHOGRAPHIC
 			};
 
-			Camera(const CameraInfo &cameraInfo, const ProjectionInfo &projectionInfo, const ProjectionType &type, Core::Logger *logger = nullptr);
+			Camera(const CameraInfo &cameraInfo, const ProjectionInfo &projectionInfo, const ProjectionType &type, Logger *logger = nullptr);
 			Camera(const Camera &camera);
 			Camera &operator=(const Camera &camera);
 			~Camera();
@@ -80,7 +80,7 @@ namespace GE::Objects {
 
 			ProjectionType	_type;
 
-			Core::Logger	*logger = nullptr;
+			Logger	*logger = nullptr;
 
 			/// Private functions
 

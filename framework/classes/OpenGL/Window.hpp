@@ -14,7 +14,7 @@
 # include <glad/glad.h>
 # include <glfw/glfw3.h>
 
-namespace GE::OpenGL {
+namespace GE {
 	/// @brief The Window class is a wrapper around a GLFW window.
 	///
 	/// It handles the creation, destruction and main loop of the window.
@@ -28,8 +28,8 @@ namespace GE::OpenGL {
 				int width,
 				int height,
 				const std::string &title,
-				const float &GLversion = 4.2f,
-				Core::Logger *logger = nullptr
+				const float &GLversion,
+				Logger *logger = nullptr
 			);
 			~Window();
 
@@ -72,12 +72,12 @@ namespace GE::OpenGL {
 			void	setShouldClose(bool value);
 
 		private:
-			Core::Logger	*logger = nullptr;
-			GLFWwindow *window;
+			Logger		*logger = nullptr;
+			GLFWwindow	*window;
 
 			// Only used for the main loop
-			size_t		fps = 0;
-			double		frameTime = 0;
+			size_t	fps = 0;
+			double	frameTime = 0;
 
 			/// Private functions
 

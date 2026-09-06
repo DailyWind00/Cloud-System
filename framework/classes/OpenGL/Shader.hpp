@@ -15,7 +15,7 @@
 # include <glm/glm.hpp>
 # include <glm/gtc/type_ptr.hpp>
 
-namespace GE::OpenGL {
+namespace GE {
 	/// @brief The Shader class is a wrapper around an OpenGL shader program.
 	///
 	/// It handles the creation, destruction and recompilation of the shader program.
@@ -27,7 +27,7 @@ namespace GE::OpenGL {
 				const std::string &vertexPath,
 				const std::string &fragmentPath,
 				const std::string &geometryPath = "",
-				Core::Logger *logger = nullptr
+				Logger *logger = nullptr
 			);
 			~Shader();
 
@@ -56,7 +56,7 @@ namespace GE::OpenGL {
 			std::string	fragmentPath;
 			std::string	geometryPath;
 
-			Core::Logger	*logger = nullptr;
+			Logger	*logger = nullptr;
 
 			/// Private functions
 

@@ -1,10 +1,10 @@
 #include "Camera.hpp"
 
-namespace GE::Objects {
+namespace GE {
 
 	# pragma region Constructors & Destructors
 
-	Camera::Camera(const CameraInfo &cameraInfo, const ProjectionInfo &projectionInfo, const ProjectionType &type, Core::Logger *logger) : logger(logger) {
+	Camera::Camera(const CameraInfo &cameraInfo, const ProjectionInfo &projectionInfo, const ProjectionType &type, Logger *logger) : logger(logger) {
 		_type = type;
 		_cameraInfo = cameraInfo;
 		_projectionInfo = projectionInfo;

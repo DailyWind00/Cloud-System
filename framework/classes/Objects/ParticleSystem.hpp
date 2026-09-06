@@ -20,7 +20,7 @@
 # include <glad/glad.h>
 # include <GL/glx.h>
 
-namespace GE::Objects {
+namespace GE {
 	// Data structure for a particle
 	// Stored in 7 floats
 	typedef struct Particle {
@@ -34,7 +34,7 @@ namespace GE::Objects {
 	// This class set a OpenCL context and a OpenCL queue.
 	class ParticleSystem {
 		public:
-			ParticleSystem(size_t ParticleCount, const std::vector<std::string> &VkernelProgramPaths, Core::Logger* logger = nullptr);
+			ParticleSystem(size_t ParticleCount, const std::vector<std::string> &VkernelProgramPaths, Logger* logger = nullptr);
 			~ParticleSystem();
 
 			/// Public functions
@@ -83,7 +83,7 @@ namespace GE::Objects {
 			// Other variables
 
 			size_t				particleCount;
-			Core::Logger*		logger = nullptr;
+			Logger*		logger = nullptr;
 
 			/// Private functions
 

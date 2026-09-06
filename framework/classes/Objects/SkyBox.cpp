@@ -1,10 +1,10 @@
 #include "SkyBox.hpp"
 
-namespace GE::Objects {
+namespace GE {
 
 	# pragma region Constructors & Destructors
 
-	SkyBox::SkyBox(const std::vector<std::string> &path, Core::Logger *logger) : logger(logger) {
+	SkyBox::SkyBox(const std::vector<std::string> &path, Logger *logger) : logger(logger) {
 		if (logger) logger->info("Creating SkyBox");
 
 		glGenVertexArrays(1, &VAO);

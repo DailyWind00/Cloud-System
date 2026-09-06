@@ -9,7 +9,7 @@
 # include <thread>
 # include <unordered_map>
 
-namespace GE::Core {
+namespace GE {
 	/**
 	 * @brief The Logger class provides a simple logging mechanism for the application.
 	 * 

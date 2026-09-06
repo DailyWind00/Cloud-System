@@ -1,10 +1,10 @@
 #include "Window.hpp"
 
-namespace GE::OpenGL {
+namespace GE {
 
 	# pragma region Constructors & Destructors
 
-	Window::Window(int posX, int posY, int width, int height, const std::string &title, const float &GLversion, Core::Logger *logger) : logger(logger) {
+	Window::Window(int posX, int posY, int width, int height, const std::string &title, const float &GLversion, Logger *logger) : logger(logger) {
 		if (logger) logger->trace("Creating window");
 
 		if (!glfwInit())

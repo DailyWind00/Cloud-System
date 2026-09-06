@@ -1,8 +1,20 @@
 #pragma once
 
-#include "GameEngine.hpp"
+# include "GameEngine.hpp"
+# include "cloud.hpp"
 
+# define WINDOW_WIDTH  800
+# define WINDOW_HEIGHT 800
+# define FOV 90
+
+using namespace std;
 using namespace GE;
-using Logger = Core::Logger;
 
-// Do game related stuff here i'm not your mom
+typedef struct GameData {
+    GE::Window  &window;
+    Camera      &camera;
+} GameData;
+
+// rendering.cpp
+void    initRendering(GE::Window &window, Logger &logger);
+void    renderLoop();

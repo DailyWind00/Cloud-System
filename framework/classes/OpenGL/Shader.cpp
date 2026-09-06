@@ -1,10 +1,10 @@
 #include "Shader.hpp"
 
-namespace GE::OpenGL {
+namespace GE {
 
 	# pragma region Constructors & Destructors
 
-	Shader::Shader(const std::string &vertexPath, const std::string &fragmentPath, const std::string &geometryPath, Core::Logger *logger) : logger(logger) {
+	Shader::Shader(const std::string &vertexPath, const std::string &fragmentPath, const std::string &geometryPath, Logger *logger) : logger(logger) {
 		if (logger) logger->trace("Creating shader");
 
 		this->vertexPath = vertexPath;

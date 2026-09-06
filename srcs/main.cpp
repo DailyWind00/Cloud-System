@@ -1,21 +1,26 @@
 #include "config.hpp"
 
-void renderLoop() {
-	// Rendering code goes here
-}
-
-int main() {
-
+int	main()
+{
 	Logger& logger = Logger::getInstance();
 
 	logger.enableConsoleOutput(true);
-	logger.setLogLevel(Logger::LogLevel::TRACE);
-	logger.info("Game Engine started");
+	logger.setLogLevel(Logger::LogLevel::WARNING);
+	logger.info("Cloud-System started");
 
-	GE::OpenGL::Window window(100, 100, 800, 600, "Game Engine Window", 4.2f, &logger);
+	try
+	{
+		GE::Window window(100, 100, WINDOW_WIDTH, WINDOW_HEIGHT, "Cloud System", 4.6f, &logger);
 
-	window.mainLoop(renderLoop);
-	logger.info("Game Engine stopped");
+		initRendering(window, logger);
+	}
+	catch(const exception& e)
+	{
+		logger.fatal(string("Catched fatal error: ") + e.what());
+	}
+
+	
+	logger.info("Cloud-System stopped");
 
 	return 0;
 }

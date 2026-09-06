@@ -3,7 +3,7 @@
 /// System includes
 # include <mutex>
 
-namespace GE::Utils {
+namespace GE {
 	/**
 	 * @brief A mutex that allows prioritizing high-priority locks over low-priority locks.
 	 * 

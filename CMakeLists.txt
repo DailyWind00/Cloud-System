@@ -8,6 +8,7 @@ find_package(OpenCL REQUIRED)
 add_executable(Cloud-System
 	# User Interface
 	srcs/main.cpp
+	srcs/rendering.cpp
 
 	# Framework Classes
 	framework/core/Logger.cpp
