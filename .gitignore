@@ -1,0 +1,7 @@
+.vscode/
+build/
+dependencies/
+test/
+Cloud-System
+*.log
+*.logs

@@ -1,5 +1,5 @@
 MAKEFLAGS += --no-print-directory
-NAME = GameEngine
+NAME = Cloud-System
 
 all: release
 
@@ -9,7 +9,7 @@ release: dependencies
 	@mv build/$(NAME) .
 
 debug: dependencies
-	@cmake -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER=g++
+	@cmake -B build -DCMAKE_BUILD_TYPE=Debug
 	@make -C build -j $(MAKEFLAGS)
 	@mv build/$(NAME) .
 

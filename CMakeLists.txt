@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.5.0)
-project(GameEngine VERSION 1.0.0)
+project(Cloud-System VERSION 1.0.0)
 cmake_policy(SET CMP0072 NEW)
 
 find_package(OpenGL REQUIRED)
 find_package(OpenCL REQUIRED)
 
-add_executable(GameEngine
+add_executable(Cloud-System
 	# User Interface
 	srcs/main.cpp
 
@@ -30,7 +30,7 @@ add_executable(GameEngine
 	dependencies/stb_image/stb_def.c
 )
 
-target_include_directories(GameEngine PRIVATE
+target_include_directories(Cloud-System PRIVATE
 	${CMAKE_SOURCE_DIR}/includes
 	${CMAKE_SOURCE_DIR}/dependencies
 	${CMAKE_SOURCE_DIR}/framework
@@ -39,7 +39,7 @@ target_include_directories(GameEngine PRIVATE
 	${OpenCL_INCLUDE_DIRS}
 )
 
-target_link_libraries(GameEngine PRIVATE
+target_link_libraries(Cloud-System PRIVATE
 	OpenGL::GL
 	glfw
 	${OpenCL_LIBRARIES}
@@ -47,9 +47,9 @@ target_link_libraries(GameEngine PRIVATE
 
 set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -fsanitize=address -lasan" CACHE STRING "Debug build flags" FORCE)
 set(CMAKE_CXX_FLAGS_RELEASE "-Ofast" CACHE STRING "Release build flags" FORCE)
-target_compile_options(GameEngine PRIVATE -Wall -Wextra -Wno-unknown-pragmas -fPIE)
+target_compile_options(Cloud-System PRIVATE -Wall -Wextra -Wno-unknown-pragmas -fPIE)
 
-set_target_properties(GameEngine PROPERTIES
+set_target_properties(Cloud-System PROPERTIES
 	CXX_STANDARD 17
 	CXX_STANDARD_REQUIRED YES
 	CXX_EXTENSIONS NO
