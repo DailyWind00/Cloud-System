@@ -3,8 +3,8 @@
 # include "GameEngine.hpp"
 # include "cloud.hpp"
 
-# define WINDOW_WIDTH  800
-# define WINDOW_HEIGHT 800
+# define WINDOW_WIDTH  1720
+# define WINDOW_HEIGHT 880
 # define FOV 90
 
 using namespace std;
@@ -17,4 +17,4 @@ typedef struct GameData {
 
 // rendering.cpp
 void    initRendering(GE::Window &window, Logger &logger);
-void    renderLoop();
+void    renderLoop(GameData &gameData);

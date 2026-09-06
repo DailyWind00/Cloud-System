@@ -19,7 +19,10 @@ void    initRendering(GE::Window &window, Logger &logger)
         &logger
 	);
 
-    GameData gameData(window, camera);
+    GameData gameData = {
+		window,
+		camera
+	};
     
     window.mainLoop(renderLoop, gameData);
 }

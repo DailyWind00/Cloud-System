@@ -10,7 +10,7 @@ int	main()
 
 	try
 	{
-		GE::Window window(100, 100, WINDOW_WIDTH, WINDOW_HEIGHT, "Cloud System", 4.6f, &logger);
+		GE::Window window(100, 50, WINDOW_WIDTH, WINDOW_HEIGHT, "Cloud System", 4.2f, &logger);
 
 		initRendering(window, logger);
 	}
