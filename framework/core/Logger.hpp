@@ -64,4 +64,4 @@ namespace GE {
 			std::mutex mapMutex;
 			std::mutex logMutex;
 	};
-} // namespace GE::Core
+}

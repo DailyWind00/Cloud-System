@@ -44,4 +44,4 @@ namespace GE {
 			void *	_data;
 
 	};
-} // namespace GE::OpenGL
+}

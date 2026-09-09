@@ -87,4 +87,4 @@ namespace GE {
 			void	_updateViewMatrix();
 			void	_updateProjectionMatrix();
 	};
-} // namespace GE::Objects
+}

@@ -83,4 +83,4 @@ namespace GE {
 
 			void	updateFrameRate();
 	};
-} // namespace GE::OpenGL
+}

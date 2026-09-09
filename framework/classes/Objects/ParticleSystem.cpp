@@ -269,4 +269,4 @@ namespace GE {
 
 # pragma endregion
 
-} // namespace GE::Objects
+}

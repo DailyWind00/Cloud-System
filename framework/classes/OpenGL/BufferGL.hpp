@@ -38,4 +38,4 @@ namespace GE {
 			GLenum	_usage;
 			size_t	_capacity;
 	};
-} // namespace GE::OpenGL
+}

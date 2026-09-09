@@ -95,4 +95,4 @@ namespace GE {
 			void			createOpenGLBuffers(size_t bufferSize);
 			void			createOpenCLContext(const std::vector<std::string> &VkernelProgramPaths);
 	};
-} // namespace GE::Objects
+}

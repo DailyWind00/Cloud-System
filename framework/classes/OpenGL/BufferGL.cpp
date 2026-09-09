@@ -91,4 +91,4 @@ namespace GE {
 
 	# pragma endregion
 
-} // namespace GE::OpenGL
+}

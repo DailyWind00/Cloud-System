@@ -63,4 +63,4 @@ namespace GE {
 			GLuint	make_module(const std::string &filepath, GLuint module_type);
 			GLuint	make_shader();
 	};
-} // namespace GE::OpenGL
+}

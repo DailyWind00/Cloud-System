@@ -101,4 +101,4 @@ namespace GE {
 
 	#pragma endregion
 
-} // namespace GE::Core
+}

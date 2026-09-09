@@ -34,4 +34,4 @@ namespace GE {
 			Singleton& operator=(Singleton&&) = delete;
 			~Singleton() = default;
 	};
-} // namespace GE::Core
+}
