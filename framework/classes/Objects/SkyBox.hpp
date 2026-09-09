@@ -30,6 +30,7 @@ namespace GE {
 	class	SkyBox {
 		public:
 			SkyBox(const std::vector<std::string> &path = {}, Logger *logger = nullptr);
+			SkyBox(Logger *logger = nullptr);
 			~SkyBox();
 
 			/// Public functions

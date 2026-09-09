@@ -100,6 +100,8 @@ namespace GE {
 		if (logger) logger->info("SkyBox created");
 	}
 
+	SkyBox::SkyBox(Logger *logger) : SkyBox({}, logger) {}
+
 	SkyBox::~SkyBox() {
 		if (textureID)
 			glDeleteTextures(1, &textureID);

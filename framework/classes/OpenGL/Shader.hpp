@@ -26,6 +26,11 @@ namespace GE {
 			Shader(
 				const std::string &vertexPath,
 				const std::string &fragmentPath,
+				Logger *logger = nullptr
+			);
+			Shader(
+				const std::string &vertexPath,
+				const std::string &fragmentPath,
 				const std::string &geometryPath = "",
 				Logger *logger = nullptr
 			);

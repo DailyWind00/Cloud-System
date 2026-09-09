@@ -4,6 +4,17 @@ namespace GE {
 
 	# pragma region Constructors & Destructors
 
+	Shader::Shader(const std::string &vertexPath, const std::string &fragmentPath, Logger *logger) : logger(logger) {
+		if (logger) logger->trace("Creating shader");
+
+		this->vertexPath = vertexPath;
+		this->fragmentPath = fragmentPath;
+
+		shaderID = make_shader();
+
+		if (logger) logger->info("Shader created");
+	}
+
 	Shader::Shader(const std::string &vertexPath, const std::string &fragmentPath, const std::string &geometryPath, Logger *logger) : logger(logger) {
 		if (logger) logger->trace("Creating shader");
 
