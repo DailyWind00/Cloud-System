@@ -9,6 +9,7 @@ add_executable(Cloud-System
 	# User Interface
 	srcs/main.cpp
 	srcs/rendering.cpp
+	srcs/events.cpp
 
 	includes/cloud-system/Cloud.cpp
 

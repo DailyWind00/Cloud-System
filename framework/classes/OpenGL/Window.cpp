@@ -16,7 +16,7 @@ namespace GE {
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, static_cast<int>(GLversion));
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, static_cast<int>(GLversion * 10) % 10);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // Mac-os compatibility
+		// glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // Mac-os compatibility
 		glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
 		window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);

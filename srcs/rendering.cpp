@@ -5,8 +5,8 @@ void    initRendering(GE::Window &window, Logger &logger)
     // Mouse Parameters
 	if (glfwRawMouseMotionSupported())
 		glfwSetInputMode(window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE);
-	// glfwSetInputMode(*window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-	// glfwSetCursorPos(*window, (float)WINDOW_WIDTH / 2, (float)WINDOW_HEIGHT / 2);
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetCursorPos(window, (float)WINDOW_WIDTH / 2, (float)WINDOW_HEIGHT / 2);
 
     // OpenGL Parameters
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
@@ -18,15 +18,32 @@ void    initRendering(GE::Window &window, Logger &logger)
         Camera::ProjectionType::PERSPECTIVE,
         &logger
 	);
+	Shader	cloud_shader("shaders/cloud.vert", "shaders/cloud.frag", &logger);
+	Shader	skybox_shader("framework/shaders/Skybox-shaderonly.vert", "framework/shaders/Skybox-shaderonly.frag", &logger);
+	Shader	AABB_shader("framework/shaders/AABB-debug.vert", "framework/shaders/AABB-debug.frag", &logger);
+
+	SkyBox	skybox(&logger);
+
+	Cloud	test({-0.5, -0.5, -0.5,}, {0.5, 0.5, 0.5,}, &logger);
 
     GameData gameData = {
 		window,
-		camera
+		camera,
+		{cloud_shader, skybox_shader, AABB_shader},
+		skybox,
+		test
 	};
     
     window.mainLoop(renderLoop, gameData);
 }
 
-void    renderLoop(GameData &gameData) {
-	(void)gameData;
+void    renderLoop(GameData &gameData)
+{
+	gameData.shaders[1].use();
+	gameData.skybox.draw();
+
+	gameData.shaders[2].use();
+	gameData.test_cloud.draw();
+
+	handleEvents(gameData);
 }
