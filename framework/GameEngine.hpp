@@ -13,20 +13,21 @@
 
 /// Objects includes
 /// These includes provide access to various drawable game objects and entities.
+# include "classes/Objects/BoundingBox.hpp"
+# include "classes/Objects/Camera.hpp"
 # include "classes/Objects/ParticleSystem.hpp"
 # include "classes/Objects/SkyBox.hpp"
-# include "classes/Objects/Camera.hpp"
 
 
 /// OpenGL includes
 /// These includes provide access to OpenGL functionalities, such as shaders and window management.
-# include "classes/OpenGL/Shader.hpp"
-# include "classes/OpenGL/Window.hpp"
 # include "classes/OpenGL/BufferGL.hpp"
 # include "classes/OpenGL/PMapBufferGL.hpp"
+# include "classes/OpenGL/Shader.hpp"
+# include "classes/OpenGL/Window.hpp"
 
 
 /// Utils includes
 /// These includes provide access to various utility functions and classes.
-# include "Utils/PriorityMutex.hpp"
 # include "Utils/NoiseGenerator.hpp"
+# include "Utils/PriorityMutex.hpp"

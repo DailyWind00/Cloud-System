@@ -1,4 +1,3 @@
-
 #include "NoiseGenerator.hpp"
 
 namespace GE {

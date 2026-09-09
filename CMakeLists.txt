@@ -10,20 +10,23 @@ add_executable(Cloud-System
 	srcs/main.cpp
 	srcs/rendering.cpp
 
+	includes/cloud-system/Cloud.cpp
+
 	# Framework Classes
 	framework/core/Logger.cpp
 
+	framework/classes/Objects/BoundingBox.cpp
 	framework/classes/Objects/ParticleSystem.cpp
 	framework/classes/Objects/SkyBox.cpp
 	framework/classes/Objects/Camera.cpp
 
-	framework/classes/OpenGL/Shader.cpp
-	framework/classes/OpenGL/Window.cpp
 	framework/classes/OpenGL/BufferGL.cpp
 	framework/classes/OpenGL/PMapBufferGL.cpp
+	framework/classes/OpenGL/Shader.cpp
+	framework/classes/OpenGL/Window.cpp
 
-	framework/classes/Utils/PriorityMutex.cpp
 	framework/classes/Utils/NoiseGenerator.cpp
+	framework/classes/Utils/PriorityMutex.cpp
 
 	# Dependencies
 	dependencies/glad/glad.c
@@ -33,6 +36,7 @@ add_executable(Cloud-System
 
 target_include_directories(Cloud-System PRIVATE
 	${CMAKE_SOURCE_DIR}/includes
+	${CMAKE_SOURCE_DIR}/includes/cloud-system
 	${CMAKE_SOURCE_DIR}/dependencies
 	${CMAKE_SOURCE_DIR}/framework
 	${CMAKE_SOURCE_DIR}/framework/classes
