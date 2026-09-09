@@ -39,11 +39,7 @@ void    initRendering(GE::Window &window, Logger &logger)
 
 void    renderLoop(GameData &gameData)
 {
-	gameData.shaders[1].use();
-	gameData.skybox.draw();
-
-	gameData.shaders[2].use();
-	gameData.test_cloud.draw();
+	gameData.test_cloud.draw(gameData.shaders[0], gameData.camera);
 
 	handleEvents(gameData);
 }

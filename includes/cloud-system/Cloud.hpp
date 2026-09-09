@@ -1,7 +1,9 @@
 #pragma once
 
 # include "Objects/BoundingBox.hpp"
+# include "Objects/Camera.hpp"
 # include "OpenGL/BufferGL.hpp"
+# include "OpenGL/Shader.hpp"
 
 /// @brief Set the quality of the clouds, higher quality can lower performances.
 enum class CloudQuality {
@@ -19,19 +21,19 @@ enum class CloudQuality {
 class Cloud {
 	public:
 		Cloud(
-			glm::vec3	pos,
-			glm::vec3	size,
+			glm::vec3	min,
+			glm::vec3	max,
 			GE::Logger *logger = nullptr
 		);
 		~Cloud();
 
 		/// Public functions
 
-		void	draw();
+		void	draw(GE::Shader &shader, GE::Camera &camera);
 
 	private:
-		GE::AABB		_volume;
-		GE::BufferGL	_bufferGL;
+		GE::AABB	_volume;
+		GLuint		_VAO;
 
 		GE::Logger	*logger = nullptr;
 };
