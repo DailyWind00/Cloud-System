@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.25.1) // WSL support
+cmake_minimum_required(VERSION 3.25.1) # WSL support
 project(Cloud-System VERSION 1.0.0)
 cmake_policy(SET CMP0072 NEW)
 
