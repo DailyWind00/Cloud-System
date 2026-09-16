@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5.0)
+cmake_minimum_required(VERSION 4.4.3)
 project(Cloud-System VERSION 1.0.0)
 cmake_policy(SET CMP0072 NEW)
 

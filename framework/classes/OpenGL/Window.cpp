@@ -7,6 +7,8 @@ namespace GE {
 	Window::Window(int posX, int posY, int width, int height, const std::string &title, const float &GLversion, Logger *logger) : logger(logger) {
 		if (logger) logger->trace("Creating window");
 
+		glfwInitHint(GLFW_WAYLAND_LIBDECOR, GLFW_WAYLAND_DISABLE_LIBDECOR);
+
 		if (!glfwInit())
 			throw std::runtime_error("Failed to initialize GLFW");
 
@@ -31,6 +33,13 @@ namespace GE {
 		if (logger) logger->trace("GLAD initialized");
 
 		glfwSetWindowPos(window, posX, posY);
+
+		glfwSetFramebufferSizeCallback(window,
+			[](GLFWwindow* window, int width, int height) {
+				glViewport(0, 0, width, height);
+				(void)window;
+			}
+		);
 
 		if (logger) logger->info("Window created");
 	}
