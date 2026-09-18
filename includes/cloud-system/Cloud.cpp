@@ -23,13 +23,18 @@ Cloud::~Cloud()
 /// The cloud is rendered on a fullscreen pass, using the AABB to filter the raycasts.
 ///
 /// @param shader The shader of the cloud.
+/// @param window The window used.
 /// @param camera The camera used for the raymarching.
-void	Cloud::draw(GE::Shader &shader, GE::Camera &camera)
+void	Cloud::draw(GE::Shader &shader, GE::Window &window, GE::Camera &camera)
 {
 	shader.use();
 	shader.setUniform("uCamPos", camera.getCameraInfo().position);
-	shader.setUniform("uView", camera.getViewMatrix());
-	shader.setUniform("uProj", camera.getProjectionMatrix());
+
+	shader.setUniform("uInvView", glm::inverse(camera.getViewMatrix()));
+	shader.setUniform("uInvProj", glm::inverse(camera.getProjectionMatrix()));
+
+	shader.setUniform("uScreenSize", (glm::vec2)window.getScreenSize());
+
 	shader.setUniform("uCloudMin", _volume.min);
 	shader.setUniform("uCloudMax", _volume.max);
 

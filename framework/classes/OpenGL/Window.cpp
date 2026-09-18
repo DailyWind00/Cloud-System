@@ -100,6 +100,14 @@ namespace GE {
 		return frameTime;
 	}
 
+	glm::ivec2	Window::getScreenSize() const {
+		glm::ivec2 size;
+
+		glfwGetWindowSize(window, &size.x, &size.y);
+
+		return size;
+	}
+
 	// Return true if the window is focused
 	bool	Window::isFocused() const {
 		return glfwGetWindowAttrib(window, GLFW_FOCUSED);

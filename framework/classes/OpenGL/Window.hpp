@@ -13,6 +13,7 @@
 /// Dependencies
 # include <glad/glad.h>
 # include <glfw/glfw3.h>
+# include <glm/glm.hpp>
 
 namespace GE {
 	/// @brief The Window class is a wrapper around a GLFW window.
@@ -62,9 +63,10 @@ namespace GE {
 			GLFWwindow *getGLFWwindow() const;
 			operator	GLFWwindow *() const;
 
-			size_t	getFPS();
-			double	getFrameTime() const;
-			bool	isFocused() const;
+			size_t		getFPS();
+			double		getFrameTime() const;
+			glm::ivec2	getScreenSize() const;
+			bool		isFocused() const;
 
 			/// Setters
 

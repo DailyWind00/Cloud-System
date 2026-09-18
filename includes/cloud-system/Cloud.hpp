@@ -4,6 +4,7 @@
 # include "Objects/Camera.hpp"
 # include "OpenGL/BufferGL.hpp"
 # include "OpenGL/Shader.hpp"
+# include "OpenGL/Window.hpp"
 
 /// @brief Set the quality of the clouds, higher quality can lower performances.
 enum class CloudQuality {
@@ -29,7 +30,7 @@ class Cloud {
 
 		/// Public functions
 
-		void	draw(GE::Shader &shader, GE::Camera &camera);
+		void	draw(GE::Shader &shader, GE::Window &window, GE::Camera &camera);
 
 	private:
 		GE::AABB	_volume;
