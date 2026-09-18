@@ -80,13 +80,29 @@ void main()
     float tEnter = intersection.x;
     float tExit = intersection.y;
 
-    // No intersection with the cloud volume.
     if (tEnter > tExit || tExit < 0.0)
     {
         Color = vec4(1.0);
         return;
     }
 
-    // Ray intersects the cloud volume.
-    Color = vec4(0.0, 0.0, 0.0, 1.0);
+    tEnter = max(tEnter, 0.0);
+
+    const float stepSize = 0.01;
+
+    float steps = 0.0;
+
+	for (float t = tEnter; t < tExit; t += stepSize)
+	{
+		vec3 position = rayOrigin + rayDirection * t;
+
+		// Cloud density will eventually be calculated here.
+		
+		steps++;
+	}
+
+    // Visualize number of steps.
+    float value = steps / 100.0;
+
+    Color = vec4(vec3(value), 1.0);
 }
