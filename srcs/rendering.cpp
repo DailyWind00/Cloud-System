@@ -9,11 +9,16 @@ void    initRendering(GE::Window &window, Logger &logger)
 	glfwSetCursorPos(window, (float)WINDOW_WIDTH / 2, (float)WINDOW_HEIGHT / 2);
 
     // OpenGL Parameters
-    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+    glClearColor(
+		135 / 255.0f,
+		206 / 255.0f,
+		235 / 255.0f,
+		1.0f
+	);
 
 	// Systems Initialization
     Camera camera(
-		(CameraInfo){{0, 0, 0}, {0, 0, 1}, {0, 1, 0}},
+		(CameraInfo){{0, 0, -1}, {0, 0, 1}, {0, 1, 0}},
 		(ProjectionInfo){FOV, 0.1f, 10000.0f, {(float)WINDOW_WIDTH, (float)WINDOW_HEIGHT}, {0.0f, 0.0f}},
         Camera::ProjectionType::PERSPECTIVE,
         &logger
