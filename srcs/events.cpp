@@ -1,5 +1,7 @@
 #include "config.hpp"
 
+# pragma region Utils
+
 // Check if a key is pressed once
 // Handle multiple keys
 // Returns true a single time if the key has been pressed, false otherwise
@@ -32,6 +34,10 @@ static inline bool MouseButtonPressedOnce(GLFWwindow *window, int button) {
 	return false;
 }
 
+# pragma endregion
+
+# pragma region Camera Handle
+
 static void	cameraMovements(GameData &gameData)
 {
 	const float camSpeed = CAMERA_SPEED * gameData.window.getFrameTime();
@@ -54,15 +60,19 @@ static void	cameraMovements(GameData &gameData)
 	glm::vec3 translation = move * camSpeed;
 
 	gameData.camera.addToPosition(translation);
+	gameData.camera.addToLookAt(translation);
+}
 
-	cameraInfo = gameData.camera.getCameraInfo(); // Refresh camera info after potential movement
+static void	cameraLookAtMouse(GameData &gameData)
+{
+	CameraInfo	cameraInfo = gameData.camera.getCameraInfo();
 
 	double mouseX, mouseY;
 	glfwGetCursorPos(gameData.window, &mouseX, &mouseY);
 
 	static glm::vec2	angles = glm::vec2(0, 0);
-	angles.x += (mouseX - ((float)WINDOW_WIDTH  / 2)) * CAMERA_SENSITIVITY * gameData.window.getFrameTime();
-	angles.y -= (mouseY - ((float)WINDOW_HEIGHT / 2)) * CAMERA_SENSITIVITY * gameData.window.getFrameTime();
+	angles.x += (mouseX - ((float)WINDOW_WIDTH  / 2)) * CAMERA_SENSITIVITY_MOUSE * gameData.window.getFrameTime();
+	angles.y -= (mouseY - ((float)WINDOW_HEIGHT / 2)) * CAMERA_SENSITIVITY_MOUSE * gameData.window.getFrameTime();
 	angles.y = glm::clamp(angles.y, -89.0f, 89.0f);
 
 	glm::vec3	cameraDir = glm::vec3{
@@ -76,6 +86,42 @@ static void	cameraMovements(GameData &gameData)
 	gameData.camera.setLookAt(cameraInfo.position + cameraDir);
 }
 
+static void	cameraLookAtKeys(GameData &gameData)
+{
+	CameraInfo	cameraInfo = gameData.camera.getCameraInfo();
+	glm::vec3	cameraDir = normalize(cameraInfo.lookAt - cameraInfo.position);
+	const float	rotationSpeed = CAMERA_SENSITIVITY_KEYS * gameData.window.getFrameTime();
+
+	if (glfwGetKey(gameData.window, GLFW_KEY_LEFT) == GLFW_PRESS)
+		cameraDir = glm::normalize(glm::vec3(glm::rotate(glm::mat4(1.0f), rotationSpeed, cameraInfo.up) * glm::vec4(cameraDir, 1.0f)));
+	if (glfwGetKey(gameData.window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+		cameraDir = glm::normalize(glm::vec3(glm::rotate(glm::mat4(1.0f), -rotationSpeed, cameraInfo.up) * glm::vec4(cameraDir, 1.0f)));
+	if (glfwGetKey(gameData.window, GLFW_KEY_UP) == GLFW_PRESS)
+	{
+		glm::vec3 right = normalize(cross(cameraDir, cameraInfo.up));
+		cameraDir = glm::normalize(glm::vec3(glm::rotate(glm::mat4(1.0f), rotationSpeed, right) * glm::vec4(cameraDir, 1.0f)));
+	}
+	if (glfwGetKey(gameData.window, GLFW_KEY_DOWN) == GLFW_PRESS)
+	{
+		glm::vec3 right = normalize(cross(cameraDir, cameraInfo.up));
+		cameraDir = glm::normalize(glm::vec3(glm::rotate(glm::mat4(1.0f), -rotationSpeed, right) * glm::vec4(cameraDir, 1.0f)));
+	}
+
+	cameraDir.y = glm::clamp(cameraDir.y, -1.0f, 1.0f);
+	cameraDir = glm::normalize(cameraDir);
+
+	gameData.camera.setLookAt(cameraInfo.position + cameraDir);
+}
+
+static void	cameraHandle(GameData &gameData)
+{
+	cameraMovements(gameData);
+	// cameraLookAtMouse(gameData);
+	cameraLookAtKeys(gameData);
+}
+
+# pragma endregion
+
 void    handleEvents(GameData &gameData)
 {
 	if (keyPressedOnce(gameData.window, GLFW_KEY_ESCAPE))
@@ -88,5 +134,5 @@ void    handleEvents(GameData &gameData)
 	gameData.shaders[2].setUniform("gNormal", 1);
 	gameData.shaders[2].setUniform("gColor", 2);
 
-	cameraMovements(gameData);
+	cameraHandle(gameData);
 }

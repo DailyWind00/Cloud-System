@@ -100,8 +100,7 @@ void main()
 
     if (tEnter > tExit || tExit < 0.0)
     {
-        Color = vec4(1.0);
-        return;
+        discard;
     }
 
     tEnter = max(tEnter, 0.0);
