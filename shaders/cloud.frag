@@ -67,6 +67,24 @@ vec2 rayBoxIntersection(vec3 rayOrigin, vec3 rayDirection)
     return vec2(tEnter, tExit);
 }
 
+float getHeight(vec3 position)
+{
+    return (position.y - uCloudMin.y) / (uCloudMax.y - uCloudMin.y);
+}
+
+float getHeightDensity(float height)
+{
+    float bottom = smoothstep(0.0, 0.2, height);
+    float top = 1.0 - smoothstep(0.7, 1.0, height);
+
+    return bottom * top;
+}
+
+float getDensity(vec3 position)
+{
+    return getHeightDensity(getHeight(position));
+}
+
 void main()
 {
     vec3 rayOrigin = uCamPos;
@@ -88,21 +106,28 @@ void main()
 
     tEnter = max(tEnter, 0.0);
 
-    const float stepSize = 0.01;
+    const float stepSize = 0.1;
+	const int maxSteps = 512;
+	float density = 0;
+	float t = tEnter;
 
-    float steps = 0.0;
-
-	for (float t = tEnter; t < tExit; t += stepSize)
+	for (int i = 0; i < maxSteps && t < tExit; i++)
 	{
 		vec3 position = rayOrigin + rayDirection * t;
 
-		// Cloud density will eventually be calculated here.
-		
-		steps++;
+		float sampleDensity = getDensity(position);
+
+		density += sampleDensity * stepSize;
+
+		if (density >= 1.0) {
+			density = 1.0;
+			break;
+		}
+
+		t += stepSize;
 	}
 
-    // Visualize number of steps.
-    float value = steps / 100.0;
+	density = clamp(density, 0.0, 1.0);
 
-    Color = vec4(vec3(value), 1.0);
+	Color = vec4(vec3(density), 1.0);
 }

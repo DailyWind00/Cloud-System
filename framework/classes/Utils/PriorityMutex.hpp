@@ -31,4 +31,4 @@ namespace GE {
 			std::mutex	_nextToAccessMutex;
 			std::mutex	_dataMutex;
 	};
-} // namespace GE::Utils
+}

@@ -26,8 +26,8 @@ add_executable(Cloud-System
 	framework/classes/OpenGL/Shader.cpp
 	framework/classes/OpenGL/Window.cpp
 
-	framework/classes/Utils/NoiseGenerator.cpp
 	framework/classes/Utils/PriorityMutex.cpp
+	framework/classes/Utils/Noises/WorleyNoise.cpp
 
 	# Dependencies
 	dependencies/glad/glad.c

@@ -28,4 +28,4 @@ namespace GE {
 
 	# pragma endregion
 
-} // namespace GE::Utils
+}

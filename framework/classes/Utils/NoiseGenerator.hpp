@@ -1,36 +1,30 @@
-# pragma once
+#pragma once
 
 /// System includes
-# include <cstdlib>
+# include <vector>
+# include <random>
 
 /// Dependencies
 # include <glm/glm.hpp>
 
+/// Defines
+#define RANDOM_SEED 0
+
 namespace GE {
-	/**
-	 * @brief A simple noise generator for 2D and 3D space.
-	 * 
-	 * Currently supports :
-	 * - 2D Perlin noise
-	 * - 3D Perlin noise
-	 */
-	class	NoiseGenerator {
+
+	class NoiseGenerator2D {
 		public:
-			explicit NoiseGenerator(const uint64_t &seed = 0) { setSeed(seed); }
-			~NoiseGenerator() = default;
+			virtual ~NoiseGenerator2D() = 0;
 
-			/// Public methods
-
-			float	perlin2D(const glm::vec2 &v);
-			float	perlin3D(const glm::vec3 &v);
-
-			void	setSeed(const uint64_t &seed);
-
-		private:
-			uint64_t	_seed;
-
-			inline float	_perlin2DDot(const glm::ivec2 &v1, const glm::vec2 &v2);
-			inline float	_perlin2DCubInterpol(const glm::vec2 &v, const float &weight);
-			glm::vec2		_perlin2DRandomGradiant(const glm::ivec2 &v);
+			virtual float sample(glm::vec2 position) const = 0;
+			virtual std::vector<float> generateTexture(glm::ivec2 resolution) const = 0;
 	};
-} // namespace GE::Utils
+
+	class NoiseGenerator3D {
+		public:
+			virtual ~NoiseGenerator3D() = 0;
+
+			virtual float sample(glm::vec3 position) const = 0;
+			virtual std::vector<float> generateTexture(glm::ivec3 resolution) const = 0;
+	};
+}
