@@ -5,6 +5,8 @@
 # include "OpenGL/BufferGL.hpp"
 # include "OpenGL/Shader.hpp"
 # include "OpenGL/Window.hpp"
+# include "OpenGL/GLTexture.hpp"
+# include "Utils/Noises/WorleyNoise.hpp"
 
 /// @brief Set the quality of the clouds, higher quality can lower performances.
 enum class CloudQuality {
@@ -33,8 +35,10 @@ class Cloud {
 		void	draw(GE::Shader &shader, GE::Window &window, GE::Camera &camera);
 
 	private:
-		GE::AABB	_volume;
-		GLuint		_VAO;
+		GE::AABB			_volume;
+		GLuint				_VAO;
+		GE::WorleyNoise3D	_worley;
+		GE::GLTexture3D		_worleyTexture;
 
 		GE::Logger	*logger = nullptr;
 };

@@ -1,7 +1,7 @@
 #pragma once
 
-# include "GameEngine.hpp"
 # include "Cloud.hpp"
+# include "Objects/SkyBox.hpp"
 
 # define WINDOW_WIDTH  1720
 # define WINDOW_HEIGHT 880

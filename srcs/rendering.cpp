@@ -31,7 +31,7 @@ void    initRendering(GE::Window &window, Logger &logger)
 
 	SkyBox	skybox(&logger);
 
-	Cloud	test({-0.5, -0.5, -0.5,}, {0.5, 0.5, 0.5,}, &logger);
+	Cloud	test({-5, -5, -5}, {5, 5, 5}, &logger);
 
     GameData gameData = {
 		window,

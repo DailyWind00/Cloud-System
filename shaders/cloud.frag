@@ -12,6 +12,8 @@ uniform vec2 uScreenSize;
 uniform vec3 uCloudMin;
 uniform vec3 uCloudMax;
 
+layout(binding = 1) uniform sampler3D uWorleyTexture;
+
 vec3 getRayDirection()
 {
     vec2 uv = gl_FragCoord.xy / uScreenSize;
@@ -82,7 +84,19 @@ float getHeightDensity(float height)
 
 float getDensity(vec3 position)
 {
-    return getHeightDensity(getHeight(position));
+    float height = getHeight(position);
+
+    float heightDensity = getHeightDensity(height);
+
+    // World position -> [0, 1] cloud-local coordinates
+    vec3 uvw = (position - uCloudMin) / (uCloudMax - uCloudMin);
+
+    float worley = texture(uWorleyTexture, uvw * 0.25).r;
+
+    // For now, use Worley as a density mask
+    float noiseDensity = 1.0 - worley;
+
+    return heightDensity * noiseDensity;
 }
 
 void main()
@@ -105,7 +119,7 @@ void main()
 
     tEnter = max(tEnter, 0.0);
 
-    const float stepSize = 0.1;
+    const float stepSize = 0.01;
 	const int maxSteps = 512;
 	float density = 0;
 	float t = tEnter;
@@ -118,15 +132,12 @@ void main()
 
 		density += sampleDensity * stepSize;
 
-		if (density >= 1.0) {
-			density = 1.0;
-			break;
-		}
-
 		t += stepSize;
 	}
 
-	density = clamp(density, 0.0, 1.0);
+	density /= maxSteps;
+	density *= 100;
 
-	Color = vec4(vec3(density), 1.0);
+	// Color = vec4(vec3(density), 1.0);
+	Color = vec4(density);
 }
