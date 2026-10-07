@@ -5,8 +5,8 @@ namespace GE {
 	WorleyNoise3D::WorleyNoise3D(
 		glm::ivec3 resolution,
 		float cellSize,
-		bool loop = true,
-    	uint32_t seed = RANDOM_SEED
+		bool loop,
+    	uint32_t seed
 	) : 
 		_resolution(resolution),
 		_cellSize(cellSize),
@@ -45,6 +45,63 @@ namespace GE {
 	};
 
 	float WorleyNoise3D::sample(glm::vec3 position) const
+	{
+		glm::ivec3 cell = glm::ivec3(
+			glm::floor(position / _cellSize)
+		);
+
+		float minDistance = std::numeric_limits<float>::max();
+
+		for (int z = -1; z <= 1; ++z)
+		{
+			for (int y = -1; y <= 1; ++y)
+			{
+				for (int x = -1; x <= 1; ++x)
+				{
+					glm::ivec3 neighbor = cell + glm::ivec3(x, y, z);
+
+					if (_loop)
+					{
+						neighbor.x = ((neighbor.x % _resolution.x) + _resolution.x)
+							% _resolution.x;
+
+						neighbor.y = ((neighbor.y % _resolution.y) + _resolution.y)
+							% _resolution.y;
+
+						neighbor.z = ((neighbor.z % _resolution.z) + _resolution.z)
+							% _resolution.z;
+					}
+					else
+					{
+						if (
+							neighbor.x < 0 || neighbor.x >= _resolution.x ||
+							neighbor.y < 0 || neighbor.y >= _resolution.y ||
+							neighbor.z < 0 || neighbor.z >= _resolution.z
+						)
+							continue;
+					}
+
+					const int index =
+						neighbor.x +
+						neighbor.y * _resolution.x +
+						neighbor.z * _resolution.x * _resolution.y;
+
+					const glm::vec3& featurePoint = _featurePoints[index];
+
+					const float distance = glm::distance(
+						position,
+						featurePoint
+					);
+
+					minDistance = std::min(minDistance, distance);
+				}
+			}
+		}
+
+		return minDistance / _cellSize;
+	}
+
+	std::vector<float> WorleyNoise3D::generateTexture(glm::ivec3 resolution) const
 	{
 
 	}

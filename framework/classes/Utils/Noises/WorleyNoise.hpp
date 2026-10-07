@@ -1,4 +1,4 @@
-#include "NoiseGenerator.hpp"
+#include "../NoiseGenerator.hpp"
 
 namespace GE {
 	/**
@@ -20,9 +20,9 @@ namespace GE {
 			std::vector<float> generateTexture(glm::ivec3 resolution) const override;
 
 		private:
-			glm::ivec3 _resolution;
-			float _cellSize;
-			bool _loop;
+			glm::ivec3	_resolution;
+			float		_cellSize;
+			bool		_loop;
 
 			std::vector<glm::vec3> _featurePoints;
 	};

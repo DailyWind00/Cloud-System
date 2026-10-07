@@ -29,5 +29,5 @@
 
 /// Utils includes
 /// These includes provide access to various utility functions and classes.
-# include "Utils/NoiseGenerator.hpp"
-# include "Utils/PriorityMutex.hpp"
+# include "classes/Utils/PriorityMutex.hpp"
+# include "classes/Utils/Noises/WorleyNoise.hpp"

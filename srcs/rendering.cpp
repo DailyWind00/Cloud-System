@@ -15,6 +15,8 @@ void    initRendering(GE::Window &window, Logger &logger)
 		235 / 255.0f,
 		1.0f
 	);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	// Systems Initialization
     Camera camera(

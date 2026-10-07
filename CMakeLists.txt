@@ -41,6 +41,8 @@ target_include_directories(Cloud-System PRIVATE
 	${CMAKE_SOURCE_DIR}/dependencies
 	${CMAKE_SOURCE_DIR}/framework
 	${CMAKE_SOURCE_DIR}/framework/classes
+	${CMAKE_SOURCE_DIR}/framework/classes/Utils
+	${CMAKE_SOURCE_DIR}/framework/classes/Utils/Noises
 	${CMAKE_SOURCE_DIR}/framework/core
 	${OpenCL_INCLUDE_DIRS}
 )
