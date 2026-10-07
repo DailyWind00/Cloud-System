@@ -46,9 +46,25 @@ namespace GE {
 
 	float WorleyNoise3D::sample(glm::vec3 position) const
 	{
-		glm::ivec3 cell = glm::ivec3(
-			glm::floor(position / _cellSize)
-		);
+		if (_loop) // Modulo back in the resolution if outside of the resolution and looping
+		{
+			const glm::vec3 size = glm::vec3(_resolution) * _cellSize;
+
+			position = glm::mod(position, size);
+			position = glm::mod(position + size, size); // Negatives
+		}
+		if (!_loop) // Return 0 if outside of the resolution and not looping
+		{
+			const glm::vec3 size = glm::vec3(_resolution) * _cellSize;
+
+			if (glm::any(glm::lessThan(position, glm::vec3(0.0f))) ||
+				glm::any(glm::greaterThanEqual(position, size)))
+			{
+				return 0.0f;
+			}
+		}
+		
+		glm::ivec3 cell = glm::ivec3(glm::floor(position / _cellSize));
 
 		float minDistance = std::numeric_limits<float>::max();
 
@@ -62,14 +78,9 @@ namespace GE {
 
 					if (_loop)
 					{
-						neighbor.x = ((neighbor.x % _resolution.x) + _resolution.x)
-							% _resolution.x;
-
-						neighbor.y = ((neighbor.y % _resolution.y) + _resolution.y)
-							% _resolution.y;
-
-						neighbor.z = ((neighbor.z % _resolution.z) + _resolution.z)
-							% _resolution.z;
+						neighbor.x = ((neighbor.x % _resolution.x) + _resolution.x) % _resolution.x;
+						neighbor.y = ((neighbor.y % _resolution.y) + _resolution.y) % _resolution.y;
+						neighbor.z = ((neighbor.z % _resolution.z) + _resolution.z) % _resolution.z;
 					}
 					else
 					{
@@ -101,8 +112,37 @@ namespace GE {
 		return minDistance / _cellSize;
 	}
 
-	std::vector<float> WorleyNoise3D::generateTexture(glm::ivec3 resolution) const
+	std::vector<float> WorleyNoise3D::generateTexture() const
 	{
+		const int voxelCount =
+			_resolution.x *
+			_resolution.y *
+			_resolution.z;
 
+		std::vector<float> texture(voxelCount);
+
+		for (int z = 0; z < _resolution.z; ++z)
+		{
+			for (int y = 0; y < _resolution.y; ++y)
+			{
+				for (int x = 0; x < _resolution.x; ++x)
+				{
+					const glm::vec3 position(
+						(x + 0.5f) * _cellSize,
+						(y + 0.5f) * _cellSize,
+						(z + 0.5f) * _cellSize
+					);
+
+					const int index =
+						x +
+						y * _resolution.x +
+						z * _resolution.x * _resolution.y;
+
+					texture[index] = sample(position);
+				}
+			}
+		}
+
+		return texture;
 	}
 }

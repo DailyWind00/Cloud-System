@@ -17,7 +17,7 @@ namespace GE {
 			virtual ~NoiseGenerator2D() = default;
 
 			virtual float sample(glm::vec2 position) const = 0;
-			virtual std::vector<float> generateTexture(glm::ivec2 resolution) const = 0;
+			virtual std::vector<float> generateTexture() const = 0;
 	};
 
 	class NoiseGenerator3D {
@@ -25,6 +25,6 @@ namespace GE {
 			virtual ~NoiseGenerator3D() = default;
 
 			virtual float sample(glm::vec3 position) const = 0;
-			virtual std::vector<float> generateTexture(glm::ivec3 resolution) const = 0;
+			virtual std::vector<float> generateTexture() const = 0;
 	};
 }

@@ -17,7 +17,7 @@ namespace GE {
 			);
 
 			float sample(glm::vec3 position) const override;
-			std::vector<float> generateTexture(glm::ivec3 resolution) const override;
+			std::vector<float> generateTexture() const override;
 
 		private:
 			glm::ivec3	_resolution;
