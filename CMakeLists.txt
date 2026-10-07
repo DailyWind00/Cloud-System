@@ -22,6 +22,7 @@ add_executable(Cloud-System
 	framework/classes/Objects/Camera.cpp
 
 	framework/classes/OpenGL/BufferGL.cpp
+	framework/classes/OpenGL/GLTexture.cpp
 	framework/classes/OpenGL/PMapBufferGL.cpp
 	framework/classes/OpenGL/Shader.cpp
 	framework/classes/OpenGL/Window.cpp
@@ -41,8 +42,6 @@ target_include_directories(Cloud-System PRIVATE
 	${CMAKE_SOURCE_DIR}/dependencies
 	${CMAKE_SOURCE_DIR}/framework
 	${CMAKE_SOURCE_DIR}/framework/classes
-	${CMAKE_SOURCE_DIR}/framework/classes/Utils
-	${CMAKE_SOURCE_DIR}/framework/classes/Utils/Noises
 	${CMAKE_SOURCE_DIR}/framework/core
 	${OpenCL_INCLUDE_DIRS}
 )

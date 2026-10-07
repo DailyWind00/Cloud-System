@@ -145,4 +145,8 @@ namespace GE {
 
 		return texture;
 	}
+
+	glm::ivec3 WorleyNoise3D::getResolution() const {
+		return _resolution;
+	}
 }
